@@ -8,17 +8,22 @@ set(CMAKE_AUTOUIC ON)
 
 set(CMAKE_PREFIX_PATH "C:/Qt/Qt5.14.2/5.14.2/mingw73_64")
 
+include_directories("D:/npcap-sdk-1.13/Include")
+link_directories("D:/npcap-sdk-1.13/Lib/")
+link_directories("C:/Windows/System32/Npcap")
+
 find_package(Qt5 COMPONENTS
         Core
         Gui
         Widgets
         REQUIRED)
 
-add_executable(QShark main.cpp)
+add_executable(QShark main.cpp mainwindow.cpp mainwindow.h mainwindow.ui Engine.cpp Engine.h)
 target_link_libraries(QShark
         Qt5::Core
         Qt5::Gui
         Qt5::Widgets
+        wpcap.dll
         )
 
 if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
